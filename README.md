@@ -1,6 +1,6 @@
 # ConcurrentLinkedHashMap
 
-###### `This repo is only for reference from sourcecode published in JavaCodeGeeks on 2010.10.06 in SourceForge v1.0.1`
+###### `This repo is only for reference from sourcecode v1.0.1 published in JavaCodeGeeks on 2010.10.06`
 
 Concurrent hash map and linked list implementation of the ConcurrentMap interface, with predictable iteration order. This implementation differs from ConcurrentHashMap in that it maintains a doubly-linked list running through all of its entries.
 
