@@ -767,8 +767,10 @@ public class ConcurrentLinkedHashMap<K, V> extends AbstractMap<K, V> implements 
 				try {
 					HashEntry<K, V>[] tab = table;
 					for (int i = 0; i < tab.length; i++) {
-						tab[i].recordRemoval(header);
-						tab[i] = null;
+						if (tab[i] != null) {
+							tab[i].recordRemoval(header);
+							tab[i] = null;
+						}
 					}
 					++modCount;
 					count = 0; // write-volatile
