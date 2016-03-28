@@ -7,22 +7,22 @@ import com.javacodegeeks.concurrent.ConcurrentLinkedHashMap.Entry;
 public class RandomPolicy implements EvictionPolicy {
 
 	Random random = new Random();
-	
+
 	@Override
 	public boolean accessOrder() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean insertionOrder() {
 		return false;
 	}
-	
+
 	@Override
 	public Entry<?, ?> evictElement(Entry<?, ?> head) {
 		int hops = random.nextInt();
-		Entry<?,?> entryToEvict = head.getAfter();
-		for(int i = 0; i < hops; i++)
+		Entry<?, ?> entryToEvict = head.getAfter();
+		for (int i = 0; i < hops; i++)
 			entryToEvict = entryToEvict.getAfter();
 		return entryToEvict;
 	}

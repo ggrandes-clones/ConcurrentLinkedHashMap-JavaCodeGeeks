@@ -3,10 +3,10 @@ package com.javacodegeeks.concurrent;
 import com.javacodegeeks.concurrent.ConcurrentLinkedHashMap.Entry;
 
 public class ExpirationPolicy implements EvictionPolicy {
-	
+
 	long ageThresholdMillis;
 	long idleTimeThresholdMillis;
-	
+
 	public ExpirationPolicy(long ageThresholdMillis, long idleTimeThresholdMillis) {
 		this.ageThresholdMillis = ageThresholdMillis;
 		this.idleTimeThresholdMillis = idleTimeThresholdMillis;
@@ -16,12 +16,12 @@ public class ExpirationPolicy implements EvictionPolicy {
 	public boolean accessOrder() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean insertionOrder() {
 		return false;
 	}
-	
+
 	@Override
 	public Entry<?, ?> evictElement(Entry<?, ?> head) {
 		return head.getAfter();
@@ -37,7 +37,7 @@ public class ExpirationPolicy implements EvictionPolicy {
 		long now = System.currentTimeMillis();
 		long accessedEntryAge = (now - accessedEntry.getCreationTime());
 		long accessedEntryIdleTime = (now - accessedEntry.getLastAccessTime());
-		if(accessedEntryIdleTime < idleTimeThresholdMillis && accessedEntryAge < ageThresholdMillis)
+		if (accessedEntryIdleTime < idleTimeThresholdMillis && accessedEntryAge < ageThresholdMillis)
 			return head;
 		else
 			return accessedEntry.getAfter();
